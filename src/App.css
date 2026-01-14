@@ -1,0 +1,40 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.mock-mode-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 當有 mock banner 時，給頁面加上 offset */
+.mock-mode-banner~* {
+  --header-top-offset: 28px;
+  /* 設為變數 */
+  margin-top: 32px;
+}
+
+/* 預設沒有 offset */
+:root {
+  --header-top-offset: 0px;
+}
+
+/* 讓 dashboard 和 admin header 吃到 offset */
+.dashboard-header,
+.admin-header {
+  position: sticky;
+  top: var(--header-top-offset);
+  z-index: 100;
+  /* 確保在內容之上 */
+}

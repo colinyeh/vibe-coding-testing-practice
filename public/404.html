@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // GitHub Pages SPA 重導向
+        // 將 404 路徑轉換成 query string 讓 index.html 處理
+        const path = window.location.pathname;
+        const search = window.location.search;
+        const hash = window.location.hash;
+
+        // 重導向到 index.html 並帶上原始路徑
+        window.location.replace(
+            window.location.origin +
+            '/vibe-coding-testing-practice/' +
+            '?redirect=' + encodeURIComponent(path + search + hash)
+        );
+    </script>
+</head>
+
+<body>
+    Redirecting...
+</body>
+
+</html>
