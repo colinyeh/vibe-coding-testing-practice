@@ -1,0 +1,43 @@
+name: Unit Tests & Coverage
+
+on:
+  push:
+    branches:
+      - '**' # 觸發於所有分支的 push
+
+jobs:
+  test:
+    name: Run Vitest with Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test:coverage
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        if: always() # 確保測試失敗時也能看到報告
+        with:
+          name: vitest-coverage-report
+          path: coverage/
+          retention-days: 7
+
+      - name: Upload HTML Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vitest-html-report
+          path: html-report/
+          retention-days: 7
