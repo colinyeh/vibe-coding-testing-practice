@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { LoginPage } from './LoginPage';
 import { AuthProvider } from '../context/AuthContext';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
